@@ -3,6 +3,8 @@ const bandName = document.getElementById('band-name');
 const song = document.getElementById('audio');
 const capaMusic = document.getElementById('capa');
 const play = document.getElementById('play');
+const next = document.getElementById('next');
+const previous = document.getElementById('previous');
 
 const chlorine = {
     songName : 'Chlorine',
@@ -48,13 +50,35 @@ function playPauseDecider(){
 }
 
 function carregarInformacoes(){
-    capaMusic.src = `imagens/${playlist[index].file}`;
+    capaMusic.src = `imagens/${playlist[index].file}.jpeg`;
     song.src = `songs/${playlist[index].file}.mp3`;
     songName.innerText = playlist[index].songName;
     bandName.innerText = playlist[index].artist;
 }
+function previousSong(){
+    if(index === 0){
+        index = playlist.length - 1;
+    }
+    else{
+        index -= 1;
+    }
+    carregarInformacoes();
+    playSong();
+}
+function nextSong(){
+    if(index === playlist.length - 1){
+        index = 0;
+    }
+    else{
+        index += 1;
+    }
+    carregarInformacoes();
+    playSong();
+}
+
 
 carregarInformacoes();
+
 play.addEventListener('click', playPauseDecider);
-011 100 101
-  3   8    5
+previous.addEventListener('click', previousSong);
+next.addEventListener('click', nextSong);
