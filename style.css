@@ -57,9 +57,10 @@ body{
     margin-bottom: 1em;
 }
 #progresso-atual{
+    --progress: 0%;
     height: inherit;
     background-color: white;
-    width: 50%;
+    width: var(--progress);
     border-radius: inherit;
 }
 button{

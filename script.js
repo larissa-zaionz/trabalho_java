@@ -75,10 +75,15 @@ function nextSong(){
     carregarInformacoes();
     playSong();
 }
+function updateProgressBar(){
+song.currentTime
+song.duration
 
+}
 
 carregarInformacoes();
 
 play.addEventListener('click', playPauseDecider);
 previous.addEventListener('click', previousSong);
 next.addEventListener('click', nextSong);
+song.addEventListener('timeupdate', updateProgressBar);
