@@ -31,6 +31,7 @@ body{
 }
 .button{
     font-size: 1.5em;
+    cursor: pointer;
 }
 .button-navi{
     font-size: 3em;
@@ -67,5 +68,9 @@ button{
     background-color: inherit;
     color: inherit;
     border: none;
+    cursor: pointer;
+}
+#container-barra{
+    padding-bottom: 1em;
     cursor: pointer;
 }

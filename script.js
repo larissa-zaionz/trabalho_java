@@ -5,6 +5,8 @@ const capaMusic = document.getElementById('capa');
 const play = document.getElementById('play');
 const next = document.getElementById('next');
 const previous = document.getElementById('previous');
+const progressBar = document.getElementById('progresso-atual');
+const progressContainer = document.getElementById('container-barra');
 
 const chlorine = {
     songName : 'Chlorine',
@@ -76,9 +78,14 @@ function nextSong(){
     playSong();
 }
 function updateProgressBar(){
-song.currentTime
-song.duration
-
+    const barWidth = (song.currentTime/song.duration)*100;
+    progressBar.style.setProperty('--progress', `${barWidth}%`)
+}
+function junpTo(event){
+    const width = progressContainer.clientWidth;
+    const clickPosition = event.offsetX;
+    const junpToTime = (clickPosition/width)*song.duration;
+    song.currentTime = junpToTime;
 }
 
 carregarInformacoes();
@@ -87,3 +94,4 @@ play.addEventListener('click', playPauseDecider);
 previous.addEventListener('click', previousSong);
 next.addEventListener('click', nextSong);
 song.addEventListener('timeupdate', updateProgressBar);
+progressContainer.addEventListener('click', junpTo);
