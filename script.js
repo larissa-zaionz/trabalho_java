@@ -7,6 +7,7 @@ const next = document.getElementById('next');
 const previous = document.getElementById('previous');
 const progressBar = document.getElementById('progresso-atual');
 const progressContainer = document.getElementById('container-barra');
+const shuffleButton = document.getElementById('embaralhar');
 
 const chlorine = {
     songName : 'Chlorine',
@@ -25,7 +26,9 @@ const babyDoll = {
 };
 
 let isPlayIng = false;
-const playlist = [chlorine, justinBieber, babyDoll];
+let isShuffled = false;
+const originalPlaylist = [chlorine, justinBieber, babyDoll];
+let sortedPlaylist = [...originalPlaylist];
 let index = 0;
 
 function playSong(){
@@ -52,14 +55,14 @@ function playPauseDecider(){
 }
 
 function carregarInformacoes(){
-    capaMusic.src = `imagens/${playlist[index].file}.jpeg`;
-    song.src = `songs/${playlist[index].file}.mp3`;
-    songName.innerText = playlist[index].songName;
-    bandName.innerText = playlist[index].artist;
+    capaMusic.src = `imagens/${sortedPlaylist[index].file}.jpeg`;
+    song.src = `songs/${sortedPlaylist[index].file}.mp3`;
+    songName.innerText = sortedPlaylist[index].songName;
+    bandName.innerText = sortedPlaylist[index].artist;
 }
 function previousSong(){
     if(index === 0){
-        index = playlist.length - 1;
+        index = sortedPlaylist.length - 1;
     }
     else{
         index -= 1;
@@ -68,7 +71,7 @@ function previousSong(){
     playSong();
 }
 function nextSong(){
-    if(index === playlist.length - 1){
+    if(index === sortedPlaylist.length - 1){
         index = 0;
     }
     else{
@@ -87,7 +90,13 @@ function junpTo(event){
     const junpToTime = (clickPosition/width)*song.duration;
     song.currentTime = junpToTime;
 }
+function shuffleButtonClicked(){
+    if(isShuffled === false){
+        isShuffled = true;
+        shuffleArray();
+    }
 
+}
 carregarInformacoes();
 
 play.addEventListener('click', playPauseDecider);
@@ -95,3 +104,4 @@ previous.addEventListener('click', previousSong);
 next.addEventListener('click', nextSong);
 song.addEventListener('timeupdate', updateProgressBar);
 progressContainer.addEventListener('click', junpTo);
+shuffleButton.addEventListener('click', shuffleButtonClicked);
