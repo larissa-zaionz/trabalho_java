@@ -8,6 +8,7 @@ const previous = document.getElementById('previous');
 const progressBar = document.getElementById('progresso-atual');
 const progressContainer = document.getElementById('container-barra');
 const shuffleButton = document.getElementById('embaralhar');
+const repeatButton = document.getElementById('repeat');
 
 const chlorine = {
     songName : 'Chlorine',
@@ -27,6 +28,7 @@ const babyDoll = {
 
 let isPlayIng = false;
 let isShuffled = false;
+let repeatOn = false;
 const originalPlaylist = [chlorine, justinBieber, babyDoll];
 let sortedPlaylist = [...originalPlaylist];
 let index = 0;
@@ -115,6 +117,21 @@ function shuffleButtonClicked(){
     }
 
 }
+function repeatButtonClicked(){
+    if(repeatOn === false){
+        repeatOn = true;
+        repeatButton.classList.add('button-active');
+    }
+    else{
+        repeatOn = false;
+        repeatButton.classList.remove('button-active');
+    }
+}
+
+
+
+
+
 carregarInformacoes();
 
 play.addEventListener('click', playPauseDecider);
@@ -123,3 +140,4 @@ next.addEventListener('click', nextSong);
 song.addEventListener('timeupdate', updateProgressBar);
 progressContainer.addEventListener('click', junpTo);
 shuffleButton.addEventListener('click', shuffleButtonClicked);
+repeatButton.addEventListener('click', repeatButtonClicked);
