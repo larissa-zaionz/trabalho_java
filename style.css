@@ -71,9 +71,16 @@ button{
     cursor: pointer;
 }
 #container-barra{
-    padding-bottom: 1em;
     cursor: pointer;
 }
 .button-active{
     color: rgb(0, 139, 93);
+}
+#time-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: rgb(139, 153, 156);
+    font-size: smaller;
+    margin-top: 0.5em;
 }
