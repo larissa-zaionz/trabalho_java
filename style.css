@@ -74,3 +74,6 @@ button{
     padding-bottom: 1em;
     cursor: pointer;
 }
+.button-active{
+    color: rgb(0, 139, 93);
+}
