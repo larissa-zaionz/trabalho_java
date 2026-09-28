@@ -90,10 +90,28 @@ function junpTo(event){
     const junpToTime = (clickPosition/width)*song.duration;
     song.currentTime = junpToTime;
 }
+function shuffleArray(preShuffleArray){
+    const size  = preShuffleArray.length;
+    let currentIndex = size -1;
+    while(currentIndex > 0){
+        let randomIndex = Math.floor(Math.random()* size); 
+        let aux = preShuffleArray[currentIndex];
+        preShuffleArray[currentIndex] = preShuffleArray[randomIndex];
+        preShuffleArray[randomIndex] = aux;
+        currentIndex -=1;
+    }
+
+}
 function shuffleButtonClicked(){
     if(isShuffled === false){
         isShuffled = true;
-        shuffleArray();
+        shuffleArray(sortedPlaylist);
+        shuffleButton.classList.add('button-active');
+    }
+    else{
+        isShuffled = false;
+        shuffleArray(...originalPlaylist);
+        shuffleButton.classList.remove('button-active');
     }
 
 }
