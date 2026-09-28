@@ -9,6 +9,8 @@ const progressBar = document.getElementById('progresso-atual');
 const progressContainer = document.getElementById('container-barra');
 const shuffleButton = document.getElementById('embaralhar');
 const repeatButton = document.getElementById('repeat');
+const songTime = document.getElementById('song-time');
+const totalTime = document.getElementById('total-Time');
 
 const chlorine = {
     songName : 'Chlorine',
@@ -127,17 +129,38 @@ function repeatButtonClicked(){
         repeatButton.classList.remove('button-active');
     }
 }
+function nextOrRepeat(){
+    if(repeatOn === false){
+        nextSong();
+    }
+    else{
+        playSong();
+    }
+}
+function toHHMMSS(originalNumber){
+    let hours = Math.floor(originalNumber/3600);
 
+}
 
+function updateCurrentTime(){
+    songTime.innerText = song.currentTime;
 
+}
+function updateTotalTime(){
+    totalTime.innerText = song.duration;
+    
+}
 
 
 carregarInformacoes();
+
 
 play.addEventListener('click', playPauseDecider);
 previous.addEventListener('click', previousSong);
 next.addEventListener('click', nextSong);
 song.addEventListener('timeupdate', updateProgressBar);
+song.addEventListener('loadMetaData', updateCurrentTime);
+song.addEventListener('ended', nextOrRepeat);
 progressContainer.addEventListener('click', junpTo);
 shuffleButton.addEventListener('click', shuffleButtonClicked);
 repeatButton.addEventListener('click', repeatButtonClicked);
