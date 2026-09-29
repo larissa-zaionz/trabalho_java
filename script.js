@@ -10,7 +10,7 @@ const progressContainer = document.getElementById('container-barra');
 const shuffleButton = document.getElementById('embaralhar');
 const repeatButton = document.getElementById('repeat');
 const songTime = document.getElementById('song-time');
-const totalTime = document.getElementById('total-Time');
+const totalTime = document.getElementById('total-time');
 
 const chlorine = {
     songName : 'Chlorine',
@@ -84,9 +84,10 @@ function nextSong(){
     carregarInformacoes();
     playSong();
 }
-function updateProgressBar(){
+function updateProgress(){
     const barWidth = (song.currentTime/song.duration)*100;
-    progressBar.style.setProperty('--progress', `${barWidth}%`)
+    progressBar.style.setProperty('--progress', `${barWidth}%`);
+    songTime.innerText = toHHMMSS(song.currentTime);
 }
 function junpTo(event){
     const width = progressContainer.clientWidth;
@@ -139,18 +140,16 @@ function nextOrRepeat(){
 }
 function toHHMMSS(originalNumber){
     let hours = Math.floor(originalNumber/3600);
+    let min  = Math.floor((originalNumber - hours * 3600)/60);
+    let secs = Math.floor(originalNumber - hours * 3600 - min * 60);
 
+    return `${hours.toString().padStart(2, '0')}:${min.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
 }
 
-function updateCurrentTime(){
-    songTime.innerText = song.currentTime;
-
-}
 function updateTotalTime(){
-    totalTime.innerText = song.duration;
+    totalTime.innerText = toHHMMSS(song.duration);
     
 }
-
 
 carregarInformacoes();
 
@@ -158,8 +157,8 @@ carregarInformacoes();
 play.addEventListener('click', playPauseDecider);
 previous.addEventListener('click', previousSong);
 next.addEventListener('click', nextSong);
-song.addEventListener('timeupdate', updateProgressBar);
-song.addEventListener('loadMetaData', updateCurrentTime);
+song.addEventListener('timeupdate', updateProgress);
+song.addEventListener('loadedmetadata', updateTotalTime);
 song.addEventListener('ended', nextOrRepeat);
 progressContainer.addEventListener('click', junpTo);
 shuffleButton.addEventListener('click', shuffleButtonClicked);
