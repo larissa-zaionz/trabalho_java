@@ -11,37 +11,43 @@ const shuffleButton = document.getElementById("embaralhar");
 const repeatButton = document.getElementById("repeat");
 const songTime = document.getElementById("song-time");
 const totalTime = document.getElementById("total-time");
+const likeButton = document.getElementById("like");
 
 const chlorine = {
   songName: "Chlorine",
   artist: "Twenty one Pilots",
   file: "twentyonepilots",
+  liked: false,
 };
-
 const capitalInicial = {
   songName: "À sua Maneira",
   artist: "Capital Inicial",
   file: "capitalinicial",
+  liked: false,
 };
 const voce = {
   songName: "Você",
   artist: "Tim Maia",
   file: "voce",
+  liked: false,
 };
 const pontosDeExclamacao = {
   songName: "Pontos de Exclamação",
   artist: "Jovem Dionisio",
   file: "pontosdeexclamacao",
+  liked: false,
 };
 const babyDoll = {
   songName: "BabyDoll",
   artist: "Dominic Fike",
   file: "babydoll",
+  liked: false,
 };
 const justinBieber = {
   songName: "Sorry",
   artist: "Justin Bieber",
   file: "justinbieber",
+  liked: false,
 };
 
 let isPlayIng = false;
@@ -56,9 +62,16 @@ const originalPlaylist = [
   voce,
   capitalInicial,
 ];
+
+localStorage.removeItem("playlist");
+
+const likesSalvos = JSON.parse(localStorage.getItem("likes")) || {};
+originalPlaylist.forEach((musica) => {
+  musica.liked = likesSalvos[musica.file] === true;
+});
+
 let sortedPlaylist = [...originalPlaylist];
 let index = 0;
-
 const params = new URLSearchParams(window.location.search);
 const musicaEscolhida = Number(params.get("musica"));
 
@@ -88,11 +101,26 @@ function playPauseDecider() {
   }
 }
 
+function likeButtonRender() {
+  const icone = likeButton.querySelector(".bi");
+
+  if (sortedPlaylist[index].liked === true) {
+    icone.classList.remove("bi-heart");
+    icone.classList.add("bi-heart-fill");
+    likeButton.classList.add("button-active");
+  } else {
+    icone.classList.add("bi-heart");
+    icone.classList.remove("bi-heart-fill");
+    likeButton.classList.remove("button-active");
+  }
+}
+
 function carregarInformacoes() {
   capaMusic.src = `imagens/${sortedPlaylist[index].file}.jpeg`;
   song.src = `songs/${sortedPlaylist[index].file}.mp3`;
   songName.innerText = sortedPlaylist[index].songName;
   bandName.innerText = sortedPlaylist[index].artist;
+  likeButtonRender();
 }
 
 function previousSong() {
@@ -145,7 +173,6 @@ function shuffleButtonClicked() {
   if (isShuffled === false) {
     isShuffled = true;
     shuffleArray(sortedPlaylist);
-
     sortedPlaylist = [
       musicaAtual,
       ...sortedPlaylist.filter((m) => m !== musicaAtual),
@@ -190,8 +217,18 @@ function updateTotalTime() {
   totalTime.innerText = toHHMMSS(song.duration);
 }
 
-carregarInformacoes();
+function likeButtonCliked() {
+  sortedPlaylist[index].liked = !sortedPlaylist[index].liked;
+  likeButtonRender();
 
+  const likes = {};
+  originalPlaylist.forEach((musica) => {
+    likes[musica.file] = musica.liked;
+  });
+  localStorage.setItem("likes", JSON.stringify(likes));
+}
+
+carregarInformacoes();
 if (params.has("musica")) {
   song
     .play()
@@ -212,3 +249,4 @@ song.addEventListener("ended", nextOrRepeat);
 progressContainer.addEventListener("click", junpTo);
 shuffleButton.addEventListener("click", shuffleButtonClicked);
 repeatButton.addEventListener("click", repeatButtonClicked);
+likeButton.addEventListener("click", likeButtonCliked);
