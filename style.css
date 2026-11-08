@@ -1,86 +1,113 @@
-*{
-    margin: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  box-sizing: border-box;
 }
 
-body{
-    height: 100vh;
-    color: white;
-    font-family: sans-serif;
-    background-image:radial-gradient(circle, rgba(238, 174, 231, 1) 0%, rgba(208, 218, 177, 1) 22%, rgba(202, 179, 214, 1) 40%, rgba(182, 221, 218, 1) 61%, rgba(223, 172, 219, 1) 73%, rgba(161, 185, 228, 1) 85%, rgba(148, 233, 179, 1) 100%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+body {
+  height: 100vh;
+  color: white;
+  font-family: sans-serif;
+  background: linear-gradient(#4a3f5c, #121212 420px) no-repeat #121212;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
 }
-#capa{
-    width: 400px;
-    border: 3px solid white;
+#capa {
+  width: 400px;
+  border: 3px solid white;
 }
-#abaixo-da-capa{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin: 2em 0 1em 0;
+#abaixo-da-capa {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2em 0 1em 0;
 }
-#container-botao{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+#container-botao {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
-.button{
-    font-size: 1.5em;
-    cursor: pointer;
+.button {
+  font-size: 1.5em;
+  cursor: pointer;
 }
-.button-navi{
-    font-size: 3em;
+.button-navi {
+  font-size: 3em;
 }
-.button-grande{
-    font-size: 4em;
+.button-grande {
+  font-size: 4em;
 }
-#titulo{
-    display: flex;
-    justify-content: center;
-    margin: 1em;
-}
-
-
-.color-transp{
-    color: rgb(139, 153, 156);
+#titulo {
+  display: flex;
+  justify-content: center;
+  margin: 1em;
 }
 
-#barra-de-progresso{
-    background-color: rgb(139, 153, 156);
-    height: 3px;
-    width: 100%;
-    border-radius: 15px;
-    margin-bottom: 1em;
+.color-transp {
+  color: rgb(139, 153, 156);
 }
-#progresso-atual{
-    --progress: 0%;
-    height: inherit;
-    background-color: white;
-    width: var(--progress);
-    border-radius: inherit;
+
+#barra-de-progresso {
+  background-color: rgb(139, 153, 156);
+  height: 3px;
+  width: 100%;
+  border-radius: 15px;
+  margin-bottom: 1em;
 }
-button{
-    background-color: inherit;
-    color: inherit;
-    border: none;
-    cursor: pointer;
+#progresso-atual {
+  --progress: 0%;
+  height: inherit;
+  background-color: white;
+  width: var(--progress);
+  border-radius: inherit;
 }
-#container-barra{
-    cursor: pointer;
+button {
+  background-color: inherit;
+  color: inherit;
+  border: none;
+  cursor: pointer;
 }
-.button-active{
-    color: rgb(0, 139, 93);
+#container-barra {
+  cursor: pointer;
 }
-#time-box{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    color: rgb(139, 153, 156);
-    font-size: smaller;
-    margin-top: 0.5em;
+.button-active {
+  color: rgb(0, 139, 93);
+}
+#time-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: rgb(139, 153, 156);
+  font-size: smaller;
+  margin-top: 0.5em;
+}
+
+.music-container {
+  background: linear-gradient(#4a3f5c, #121212 420px) no-repeat #121212;
+  padding: 2.5em;
+  border-radius: 1em;
+}
+.voltar {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 1.4rem;
+  text-decoration: none;
+}
+
+.voltar:hover {
+  background: rgba(255, 255, 255, 0.25);
 }

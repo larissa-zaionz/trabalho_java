@@ -1,0 +1,135 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+  background: linear-gradient(#4a3f5c, #121212 420px) no-repeat #121212;
+  min-height: 100vh;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  grid-template-areas: "lateral conteudo";
+  gap: 48px;
+  align-items: start;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+aside {
+  grid-area: lateral;
+  position: sticky;
+  top: 24px;
+}
+
+aside img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+}
+
+aside p {
+  margin-top: 20px;
+  font-size: 0.85rem;
+  color: #d0d0d0;
+}
+
+aside h1 {
+  margin-top: 4px;
+  font-size: 2.2rem;
+  line-height: 1.1;
+}
+
+.musicas {
+  grid-area: conteudo;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  counter-reset: faixa;
+}
+
+.tocar {
+  display: inline-block;
+  padding: 14px 36px;
+  border-radius: 999px;
+  background: #1ed760;
+  color: #000;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  transition:
+    transform 0.1s,
+    background 0.1s;
+}
+
+.tocar:hover {
+  background: #3be477;
+  transform: scale(1.04);
+}
+
+.faixa {
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  border-radius: 6px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.faixa::before {
+  counter-increment: faixa;
+  content: counter(faixa);
+  text-align: center;
+  color: #b3b3b3;
+}
+
+.faixa:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.faixa:hover::before {
+  color: #1ed760;
+}
+
+.nome {
+  font-weight: bold;
+}
+
+.artista {
+  color: #b3b3b3;
+  font-size: 0.9rem;
+}
+
+footer {
+  text-align: center;
+  padding: 24px;
+  color: #b3b3b3;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 700px) {
+  main {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "lateral"
+      "conteudo";
+    gap: 32px;
+  }
+
+  aside {
+    position: static;
+  }
+
+  aside img {
+    max-width: 240px;
+  }
+}
