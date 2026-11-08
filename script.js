@@ -19,22 +19,10 @@ const chlorine = {
   file: "twentyonepilots",
   liked: false,
 };
-const capitalInicial = {
-  songName: "À sua Maneira",
-  artist: "Capital Inicial",
-  file: "capitalinicial",
-  liked: false,
-};
-const voce = {
-  songName: "Você",
-  artist: "Tim Maia",
-  file: "voce",
-  liked: false,
-};
-const pontosDeExclamacao = {
-  songName: "Pontos de Exclamação",
-  artist: "Jovem Dionisio",
-  file: "pontosdeexclamacao",
+const justinBieber = {
+  songName: "Sorry",
+  artist: "Justin Bieber",
+  file: "justinbieber",
   liked: false,
 };
 const babyDoll = {
@@ -43,10 +31,22 @@ const babyDoll = {
   file: "babydoll",
   liked: false,
 };
-const justinBieber = {
-  songName: "Sorry",
-  artist: "Justin Bieber",
-  file: "justinbieber",
+const pontosDeExclamacao = {
+  songName: "Pontos de Exclamação",
+  artist: "Jovem Dionisio",
+  file: "pontosdeexclamacao",
+  liked: false,
+};
+const voce = {
+  songName: "Você",
+  artist: "Tim Maia",
+  file: "voce",
+  liked: false,
+};
+const capitalInicial = {
+  songName: "À sua Maneira",
+  artist: "Capital Inicial",
+  file: "capitalinicial",
   liked: false,
 };
 
